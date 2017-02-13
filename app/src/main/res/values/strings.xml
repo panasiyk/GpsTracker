@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">sqlite</string>
+    <string name="app_name">GpsTracker</string>
     <string name="view">View</string>
     <string name="stop">Stop</string>
     <string name="start">Start</string>

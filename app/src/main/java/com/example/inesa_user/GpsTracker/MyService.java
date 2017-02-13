@@ -1,4 +1,4 @@
-package com.example.inesa_user.sqlite;
+package com.example.inesa_user.GpsTracker;
 
 import android.app.Service;
 import android.content.ContentValues;
@@ -47,23 +47,19 @@ public class MyService extends Service{
         cv.put("y", y);
         long rowID = db.insert("mytable", null, cv);
         Log.d(LOG_TAG, "row inserted, ID = " + rowID);
-        DBHelper.getInstance(this).close();
     }
 
     public class MyLocationListener implements LocationListener {
 
         private LocationManager locationManager;
-        private Intent intentForStatus;
+
         private MyLocationListener() {
-            intentForStatus = new Intent(MainActivity.BROADCAST_STATUS);
             locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
             //noinspection MissingPermission
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000 * 10, 5, this);
             //noinspection MissingPermission
-            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000 * 10, 5, this);
+            //locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000 * 10, 5, this);
             Log.d(LOG_TAG, "MyLocationListenerCreate");
-            intentForStatus.putExtra("status", false);
-            sendBroadcast(intentForStatus);
         }
         void stopLocationUpdates() {
 
@@ -98,11 +94,8 @@ public class MyService extends Service{
 
         private void checkEnabled() {
             if(!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
-                if (!locationManager
-                        .isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
                     startActivity(new Intent(
                             android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-                }
 
             }
         }

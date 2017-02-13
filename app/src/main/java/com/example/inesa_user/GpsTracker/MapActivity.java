@@ -1,4 +1,4 @@
-package com.example.inesa_user.sqlite;
+package com.example.inesa_user.GpsTracker;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.inesa_user.sqlite.R;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -17,6 +18,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 public class MapActivity extends FragmentActivity implements OnMapReadyCallback {
+    public static final String BROADCAST_STATUS = "com.map.drawPolyline";
     private PolylineOptions polylineOptions;
     final String LOG_TAG = "myLogs";
     public SQLiteDatabase db;

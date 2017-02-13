@@ -1,4 +1,4 @@
-package com.example.inesa_user.sqlite;
+package com.example.inesa_user.GpsTracker;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
